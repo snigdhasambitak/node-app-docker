@@ -1,0 +1,10 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Snigdha Sambit Aryakumar <first.last@example.com>",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
