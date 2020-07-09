@@ -115,3 +115,43 @@ We expose port 8080 from the local machine to 8888 of the container.
 docker run -p 8080:8888 node-app-docker:latest
 ```
 You can hit the browser at localhost:8080 to see the node application
+
+## Build and test simultaneously 
+
+Suppose, you would like to change the application and want to see the changes without having to build the docker image from the scratch. Which is a fair requirement as you need to make the changes and test the results
+
+Let's change the Dockerfile a bit
+
+```bash
+
+FROM alpine:3.8
+ 
+RUN apk add --update nodejs nodejs-npm
+ 
+# Create app directory
+WORKDIR /usr/src/app
+ 
+COPY package.json ./
+ 
+# npm install
+RUN npm install
+ 
+# Expose port
+EXPOSE 8888
+
+```
+
+Build a new container
+
+```bash
+docker build -t node-app-docker .
+```
+
+Spin a container using the new image
+
+```bash
+docker run -it -p 8080:8888 -v ($pwd):/usr/src/app node-app-docker node server.js
+```
+  
+`docker -it` will open the shell once the container is up and running and it will executes the "node server.js" command which starts the node server. Now if you change in anything the application, lets say the index.html, you will able to see the changes once you refresh the browser.
+
