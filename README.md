@@ -104,7 +104,7 @@ http.createServer(handleRequest).listen(8888);
 * How to build a docker image.
 
 ```bash
-docker build -t <your-user-name>/node-docker .
+docker build -t node-app-docker .
 ```
 
 * How to create a docker container from the image.
@@ -112,6 +112,6 @@ docker build -t <your-user-name>/node-docker .
 We expose port 8080 from the local machine to 8888 of the container.
 
 ```bash
-docker run -p 8080:8888 <your-user-name>/node-docker
+docker run -p 8080:8888 node-app-docker:latest
 ```
 You can hit the browser at localhost:8080 to see the node application
